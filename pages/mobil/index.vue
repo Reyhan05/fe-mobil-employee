@@ -83,7 +83,7 @@
     methods: {
         async onDelete(data) {
             await this.$axios.$delete(
-                `http://localhost:35000/users/car/` + data.id
+                "http://localhost:35000/users/car/" + data.id
             );
             this.getapi();
         },
@@ -133,7 +133,7 @@
         },
         onReset(event) {
             event.preventDefault();
-            this.form.merek_mobil = "";
+         this.form.merek_mobil = "";
             this.form.tipe_mobil = "";
             this.form.warna = "";
             this.show = false;

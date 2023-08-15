@@ -49,12 +49,17 @@
           nama: "",
           umur: "",
         },
+        form_edit: {
+          nama: "",
+          umur: "",
+        },
+        show: true,
         onEdit: false,
         fields: [
           { key: "id", sortable: "true" },
           { key: "nama", sortable: "true" },
           { key: "umur", sortable: "true" },
-          { key: "#", sortable: "true" },
+          { key: "#", sortable: "false" },
         ],
         items: [],
       };
@@ -62,7 +67,7 @@
     methods: {
       async onDelete(data) {
         await this.$axios.$delete(
-          "http://localhost:35000/users/employee" + data.id
+          "http://localhost:35000/users/employee/" + data.id
         );
         this.getapi
       },
@@ -87,7 +92,7 @@
         event.preventDefault();
         try {
           await this.$axios.$put(
-          "http://localhost:35000/users/employee" + this.form_edit.id,
+          "http://localhost:35000/users/employee/" + this.form_edit.id,
           this.form_edit
         );
         this.getapi
