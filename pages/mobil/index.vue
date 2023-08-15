@@ -63,78 +63,87 @@
           tipe_mobil: "",
           warna: "",
         },
+        form_edit: {
+          merek_mobil: "",
+          tipe_mobil: "",
+          warna: "",
+        },
+        show: true,
         onEdit: false,
         fields: [
           { key: "id", sortable: "true" },
           { key: "merek_mobil", sortable: "true" },
           { key: "tipe_mobil", sortable: "true" },
           { key: "warna", sortable: "true" },
-          { key: "#", sortable: "true" },
+          { key: "#", sortable: "false" },
         ],
         items: [],
       };
     },
     methods: {
-        async getapi() {
-        const data = await this.$axios.$get("http://localhost:35000/users/car");
-        this.items = data.data;
-        for(let i = 0; i < this.items.length; i++){
-          const element = this.items[i]
-          element.id = i + 1
-        }
-        console.log(data.data);
-      },
-      async onDelete(data) {
-        await this.$axios.$delete(
-          `http://localhost:35000/users/car/` + data.id
-        );
-        this.getapi();
-      },
-      async onSubmit(event) {
-        event.preventDefault();
-        try {
-          await this.$axios.$post(
-            "http://localhost:35000/users/car",
-            this.form
-          );
-          this.getapi();
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      async onReset(event) {
-        event.preventDefault();
-        this.form.merek_mobil = "";
-        this.form.tipe_mobil = "";
-        this.form.warna = "";
-        this.show = false;
-        this.$nextTick(() => {
-          this.show = true;
-        });
-      },
-      async onEditForm(data) {
-        this.onEdit = true; 
-        this.form_edit.merek_mobil = data.merek_mobil;
-        this.form_edit.tipe_mobil = data.tipe_mobil;
-        this.form_edit.warna = data.warna;
-        this.form_edit.id = data.id;
-      },
-      async onSubmitEdit(event) {
-        event.preventDefault();
-        try{
-            await this.$axios.$put(
-              `http://localhost:35000/users/car/` + this.form_edit.id,
-              this.form_edit
+        async onDelete(data) {
+            await this.$axios.$delete(
+                `http://localhost:35000/users/car/` + data.id
             );
             this.getapi();
-        }
-        catch(error){
-          console.log(error);
-        }
-      },
+        },
+        async onEditForm(data) {
+            this.onEdit = true;
+            this.form_edit.merek_mobil = data.merek_mobil;
+            this.form_edit.tipe_mobil = data.tipe_mobil;
+            this.form_edit.warna = data.warna;
+            this.form_edit.id = data.id;
+        },
+        async getapi() {
+            const data = await this.$axios.$get(
+                "http://localhost:35000/users/car",
+            );
+            this.items = data.data;
+            for (let i = 0; i < this.items.length; i++) {
+                const element = this.items[i]
+                element.id = i + 1
+            }
+            console.log(data.data);
+        },
+        async onSubmitEdit(event) {
+            event.preventDefault();
+            try {
+                await this.$axios.$put(
+                    `http://localhost:35000/users/car/` + this.form_edit.id,
+                    this.form_edit
+                );
+                this.getapi();
+            }
+            catch (error) {
+                console.log(error);
+            }
+        },
+
+        async onSubmit(event) {
+            event.preventDefault();
+            try {
+                await this.$axios.$post(
+                    "http://localhost:35000/users/car",
+                    this.form
+                );
+                this.getapi();
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        onReset(event) {
+            event.preventDefault();
+            this.form.merek_mobil = "";
+            this.form.tipe_mobil = "";
+            this.form.warna = "";
+            this.show = false;
+            this.$nextTick(() => {
+                this.show = true;
+            });
+        },
     },
     mounted() {
-      this.getapi();
+        this.getapi();
     }
-  }
+}
 </script>
