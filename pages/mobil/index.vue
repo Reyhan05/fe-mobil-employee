@@ -109,7 +109,7 @@
             event.preventDefault();
             try {
                 await this.$axios.$put(
-                    `http://localhost:35000/users/car/` + this.form_edit.id,
+                    "http://localhost:35000/users/car/" + this.form_edit.id,
                     this.form_edit
                 );
                 this.getapi();
@@ -118,19 +118,14 @@
                 console.log(error);
             }
         },
-
         async onSubmit(event) {
-            event.preventDefault();
-            try {
-                await this.$axios.$post(
-                    "http://localhost:35000/users/car",
-                    this.form
-                );
-                this.getapi();
-            } catch (error) {
-                console.log(error);
-            }
-        },
+         event.preventDefault();
+         await this.$axios.$post(
+          "http://localhost:35000/users/car",
+          this.form
+        );
+        this.getapi();
+      },
         onReset(event) {
             event.preventDefault();
          this.form.merek_mobil = "";

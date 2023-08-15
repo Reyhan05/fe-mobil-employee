@@ -73,7 +73,6 @@
       },
       async onEditForm(data) {
         this.onEdit = true;
-        console.log(data);
         this.form_edit.nama = data.nama;
         this.form_edit.umur = data.umur;
         this.form_edit.id = data.id;
