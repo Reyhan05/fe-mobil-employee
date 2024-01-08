@@ -72,7 +72,7 @@
   methods: {
       async onDelete(data) {
           await this.$axios.$delete(
-              "http://localhost:35000/users/employee/" + data.id
+              "http://localhost:3333/users/employee/" + data.id
           );
           this.getapi();
       },
@@ -84,7 +84,7 @@
       },
       async getapi() {
           const data = await this.$axios.$get(
-              "http://localhost:35000/users/employee",
+              "http://localhost:3333/users/employee",
           );
           this.items = data.data;
           for (let i = 0; i < this.items.length; i++) {
@@ -97,7 +97,7 @@
           event.preventDefault();
           try {
               await this.$axios.$put(
-                  "http://localhost:35000/users/employee/" + this.form_edit.id,
+                  "http://localhost:3333/users/employee/" + this.form_edit.id,
                   this.form_edit
               );
               this.getapi();
@@ -109,7 +109,7 @@
       async onSubmit(event) {
        event.preventDefault();
        await this.$axios.$post(
-        "http://localhost:35000/users/employee",
+        "http://localhost:3333/users/employee",
         this.form
       );
       this.getapi();
