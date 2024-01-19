@@ -23,12 +23,13 @@
       };
     },
     methods: {
-      // async getData(){
-      //   this.dataSLA[0] = parseFloat(this.data.totalSLA.toFixed(2));
-      //   const data = await this.$axios.$get(
-      //       '/list-case?filter=all&page=all&size=10'
-      //     );
-      // },
+      async getData(){
+        this.dataSLA[0] = parseFloat(this.data.totalSLA.toFixed(2));
+        const data = await this.$axios.$get(
+            '/list-case?filter=all&page=all&size=10'
+          );     
+          console.log(data.data); 
+      },
       initChart() {
         const chartOptions = {
           chart: {

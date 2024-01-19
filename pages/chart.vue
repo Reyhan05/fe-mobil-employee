@@ -2,13 +2,15 @@
    <div class="container">
     <div class="row">
       <div class="col-md-6 d-flex align-items-center">
-         <simple-chart v-if="!loading" :data="items"></simple-chart>
+        <bar-chart v-if="!loading" :data="items"></bar-chart>
+        <!-- <sla-chart v-if="!loading" :data="items"></sla-chart> -->
        </div>
   
        <div class="col-md-6 myChart">
-         <!-- <donut-chart v-if="!loading" :data="items"></donut-chart> -->
-         <dougnat-chart v-if="!loading" :data="items"></dougnat-chart>
-       </div>
+         <donut-chart v-if="!loading" :data="items"></donut-chart>
+         <!-- <dougnat-chart v-if="!loading" :data="items"></dougnat-chart> -->
+         <!-- <solid-gauge-chart v-if="!loading" :data="items"></solid-gauge-chart> -->
+        </div>
     </div>
 
    <div class="container border mt-5">
